@@ -21,8 +21,9 @@ let rec length lst =
   | _ :: tl -> 1 + (length tl)
 
 (* Write a function to add up the elements of a list by matching on it. *)
-let rec sum lst =
-  failwith "For you to implement"
+let rec sum = function
+  | [] -> 0
+  | h :: rest -> h + (sum rest)
 
 (* The signature for the append operator is
    val (@) : 'a list -> 'a list -> 'a list

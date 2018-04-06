@@ -11,8 +11,9 @@ let is_superman x =
 
 (* Let's use our own pattern matching. Write a function that returns
    whether x is non zero by matching on x *)
-let non_zero x =
-  failwith "For you to implement"
+let non_zero = function
+  | x when not (phys_equal x 0) -> true
+  | _ -> false
 
 let%test "Testing non_zero..." =
   Bool.(=) false (non_zero 0)

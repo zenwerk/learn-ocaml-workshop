@@ -57,13 +57,14 @@ module My_list : sig
 end = struct
 
   (* TODO *)
-  let map f lst = failwith "For you to implement"
+  let map f lst = List.fold_right ~init:[] ~f:(fun x acc -> f x :: acc) lst
+  (* let map f lst = List.fold_left ~f:(fun acc x -> acc @ [(f x)]) ~init:[] lst *)
 
   (* TODO *)
-  let iter f lst = failwith "For you to implement"
+  let iter f lst = List.fold_left lst ~init:() ~f:(fun _acc x -> f x)
 
   (* TODO *)
-  let filter f lst = failwith "For you to implement"
+  let filter f lst = List.fold_left lst ~init:[] ~f:(fun acc x -> if f x then acc @ [x] else acc)
 
 end
 
@@ -110,7 +111,7 @@ let () = assert (List.mem ~equal:Int.equal [1;2;3] 3)
 
    val sort: compare:('a -> 'a -> int) -> 'a list -> 'a list
 *)
-let () = assert ([%compare.equal: int list] (List.sort ~cmp:(fun x y -> x - y) [3;1;2]) [1;2;3])
+let () = assert ([%compare.equal: int list] (List.sort ~compare:(fun x y -> x - y) [3;1;2]) [1;2;3])
 
 (*module My_list : sig
   val map : ('a -> 'b) -> 'a list -> 'b list

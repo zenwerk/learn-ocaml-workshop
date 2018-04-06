@@ -76,10 +76,12 @@ let four =
 
 module Fraction : sig
 
-  type t
+  type t = int * int
 
   (* TODO: Add signatures for the create and value functions to expose them in
      the Fraction module. *)
+  val create: numerator:'a -> denominator:'b -> 'a * 'b
+  val value: t -> float
 
 end = struct
 
